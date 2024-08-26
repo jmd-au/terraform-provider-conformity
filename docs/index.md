@@ -5,7 +5,7 @@ Terraform configurations must declare which providers they require so that Terra
 
 These are the providers used to set up your Conformity Account for AWS. This needs to be properly configured by adding the correct credentials before using.
 
-##### What Providers Do
+## What Providers Do
 
 Each provider adds a set of resource types and/or data sources that Terraform can manage.
 
@@ -13,17 +13,14 @@ Every resource type is implemented by a provider; without providers, Terraform c
 
 Most providers configure a specific infrastructure platform (either cloud or self-hosted). Providers can also offer local utilities for tasks like generating random numbers for unique resource names.
 
-## List of Providers Used
-There are two providers required for this to run, the Conformity Provider and AWS Provider.
-
-### Conformity Provider
+## Conformity Provider
 Conformity Provider Section
 
 ```hcl
 terraform {
   required_providers {
     conformity = {
-      version = "0.4.1"
+      version ~> "0.5.0"
       source  = "trendmicro/conformity"
     }
   }
@@ -34,43 +31,25 @@ provider "conformity" {
   apikey = var.apikey
 }
 ```
-## Region Argument reference
+### Region Argument reference
 
-- For `legacy accounts` Terraform will just support for below three regions
-   * eu-west-1
-   * us-west-2
-   * ap-southeast-2 
-- For `CloudOne accounts` Terraform will Support below regions
-   * us-1
-   * in-1
-   * gb-1
-   * jp-1
-   * de-1
-   * au-1
-   * ca-1
-   * sg-1
+For `legacy accounts` Terraform will just support for below three regions
+  * eu-west-1
+  * us-west-2
+  * ap-southeast-2 
+
+For `CloudOne accounts` Terraform will Support below regions
+  * us-1
+  * in-1
+  * gb-1
+  * jp-1
+  * de-1
+  * au-1
+  * ca-1
+  * sg-1
    
-  Also click <a href="https://cloudone.trendmicro.com/docs/identity-and-account-management/c1-regions/"> here </a> to refer cloudone accounts region document
-   
 
-### AWS Provider
-
-```hcl
-terraform {
-  required_providers {
-      aws = {
-      source  = "hashicorp/aws"
-      version = ">= 3.44.0"
-    }
-  }
-}
-
-provider "aws" {
-  region     = var.region
-  access_key = var.access_key
-  secret_key = var.secret_key
-}
-```
+Also click <a href="https://cloudone.trendmicro.com/docs/identity-and-account-management/c1-regions/"> here </a> to refer cloudone accounts region document
 
 ## Example Usage
 ```hcl
